@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+</head>
+<body>
+    <h2>Mascotas</h2>
+    <form action="Encuesta" method="post">
+    
+		<input type="checkbox" id="perro" value="second_checkbox" />
+		<label for="perro">perro</label>
+    	<br>
+    	
+    	<input type="checkbox" id="cbox2" value="second_checkbox" />
+		<label for="cbox2">Este es mi segundo checkbox</label>
+    	<br>
+    	
+    	<input type="checkbox" id="cbox2" value="second_checkbox" />
+		<label for="cbox2">Este es mi segundo checkbox</label>
+    	<br>
+    	
+    	<input type="checkbox" id="cbox2" value="second_checkbox" />
+		<label for="cbox2">Este es mi segundo checkbox</label>
+    	<br>
+    	
+    	<input type="checkbox" id="cbox2" value="second_checkbox" />
+		<label for="cbox2">Este es mi segundo checkbox</label>
+    	<br>
+    	
+    	<input type="checkbox" id="cbox2" value="second_checkbox" />
+		<label for="cbox2">Este es mi segundo checkbox</label>
+    	<br>
+    	
+
+    
+    
+        <label for="nombre">__Usuario</label>
+        <input type="text" id="user" name="user" required>
+        <br>
+        <label for="nombre">Contraseña</label>
+        <input type="text" id="pass" name="pass" required>
+           <br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contador</title>
+</head>
+<body>
+    <h2>Contador</h2>
+    <form action="ContadorVisitas" method="post">
+        <label for="nombre">Contador : </label>
+
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
