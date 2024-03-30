@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
     <entry loc="C:\Users\Felipe\Downloads\eclipse-jee-2023-12-R-win32-x86_64\eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.9.v20231028-0858" stamp="1701477244000"/>
+    <entry loc="/snap/eclipse/85/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_17.0.10.v20240120-1143" stamp="1710405724000"/>
     <entry loc="C:\Users\Felipe\Downloads\openjdk-19+36_windows-x64_bin\jdk-19" stamp="1710885507984"/>
+    <entry loc="/usr/lib/jvm/java-17-openjdk-amd64" stamp="1701691494272"/>
+    <entry loc="C:\Users\Felipe\Downloads\eclipse-jee-2023-12-R-win32-x86_64\eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.9.v20231028-0858\jre" stamp="1701477244000"/>
+    <entry loc="/usr/lib/jvm/java-8-openjdk-amd64" stamp="1707149713677"/>
+    <entry loc="/usr/lib/jvm/java-11-openjdk-amd64" stamp="1707149710573"/>
+    <entry loc="/snap/eclipse/85/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_17.0.10.v20240120-1143/jre" stamp="1710405724000"/>
 </dirs>

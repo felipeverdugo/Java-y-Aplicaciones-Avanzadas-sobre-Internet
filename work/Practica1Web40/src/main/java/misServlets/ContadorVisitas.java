@@ -2,6 +2,7 @@ package misServlets;
 
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
 
 import jakarta.servlet.ServletContext;
@@ -19,6 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/ContadorVisitas")
 public class ContadorVisitas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private int cant = 0;
 
     /**
      * Default constructor. 
@@ -34,13 +36,14 @@ public class ContadorVisitas extends HttpServlet {
 		// TODO Auto-generated method stub
 
 
-		Integer contador = (Integer) getServletContext().getAttribute("contadorVisitas");
-		
-		contador = (contador == null) ? 1 : contador + 1;
-		
-		getServletContext().setAttribute("contadorVisitas", contador);
+//		Integer contador = (Integer) getServletContext().getAttribute("contadorVisitas");
+//		
+//		contador = (contador == null) ? 1 : contador + 1;
+//		
+//		getServletContext().setAttribute("contadorVisitas", contador);
 		
 
+		cant++;
 		
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
@@ -49,7 +52,7 @@ public class ContadorVisitas extends HttpServlet {
 		out.println("<TITLE> Hola Mundo </TITLE>");
 		out.println("</HEAD>");
 		out.println("<BODY>");
-		out.println("<CENTER> <H1> Este servlet lo visitaron: "+ contador +" usuario/s  </H1> </CENTER>");
+		out.println("<CENTER> <H1> Este servlet lo visitaron: "+ cant +" usuario/s  </H1> </CENTER>");
 		out.println("</BODY>");
 		out.println("</HTML>");
 
