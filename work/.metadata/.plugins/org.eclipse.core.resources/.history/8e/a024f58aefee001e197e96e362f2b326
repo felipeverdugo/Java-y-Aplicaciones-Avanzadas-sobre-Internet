@@ -1,0 +1,91 @@
+package misServlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+/**
+ * Servlet implementation class Encuesta
+ */
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/Encuesta")
+public class Encuesta extends HttpServlet {
+	Map<String, Integer> diccionarioDeMascotas = new HashMap<>();
+	private static final long serialVersionUID = 1L;
+
+    /**
+     * Default constructor. 
+     */
+    public Encuesta() {
+    	diccionarioDeMascotas.put("perro", 0);
+    	diccionarioDeMascotas.put("gato", 0);
+    	diccionarioDeMascotas.put("pajaro", 0);
+    	diccionarioDeMascotas.put("hamster", 0);
+    	diccionarioDeMascotas.put("conejo", 0);
+    	diccionarioDeMascotas.put("pez", 0);
+
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+
+		String[] mascotas = request.getParameterValues("mascotas");
+		
+
+		
+		PrintWriter out=response.getWriter();	
+		response.setContentType("text/html");
+		
+		
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title>Usuario Valido </title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.print("<table>");
+		
+        for (Map.Entry<String, Integer> entry : diccionarioDeMascotas.entrySet()) {
+            String nombreMascota = entry.getKey();
+            out.print("<tr><th>" + nombreMascota + "</th><th> Votos</th> "+ 1+ "</tr>");
+        }
+        
+
+		out.print("</table>");
+		out.println("</body>");
+		out.println("</html>");
+		out.close();
+		
+		
+
+		
+		
+		
+		
+		
+		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

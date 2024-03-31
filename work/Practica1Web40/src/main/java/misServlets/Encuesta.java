@@ -2,6 +2,10 @@ package misServlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Servlet implementation class Encuesta
@@ -16,12 +20,20 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/Encuesta")
 public class Encuesta extends HttpServlet {
+	Map<String, Integer> diccionarioDeMascotas = new HashMap<>();
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
     public Encuesta() {
+    	diccionarioDeMascotas.put("perro", 0);
+    	diccionarioDeMascotas.put("gato", 0);
+    	diccionarioDeMascotas.put("pajaro", 0);
+    	diccionarioDeMascotas.put("hamster", 0);
+    	diccionarioDeMascotas.put("conejo", 0);
+    	diccionarioDeMascotas.put("pez", 0);
+
         // TODO Auto-generated constructor stub
     }
 
@@ -31,9 +43,9 @@ public class Encuesta extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String perro = request.getParameter("perro");
-		String mascotas = request.getParameter("mascotas");
-		System.out.println(mascotas);
+
+		String[] mascotasSeleccionadas = request.getParameterValues("mascotas");
+		
 		
 		
 		PrintWriter out=response.getWriter();	
@@ -42,22 +54,36 @@ public class Encuesta extends HttpServlet {
 		
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<title>Usuario Valido </title>");
+		out.println("<title>Encuenta general </title>");
 		out.println("</head>");
 		out.println("<body>");
 		out.print("<table>");
-		out.print("<tr><th>Mascota</th><th> Votos</th></tr>");
-		out.print("<tr><td>Gato</td><td>10</td></tr>"); 
-		out.print("<tr><td>Pájaro</td><td>15</td></tr>"); 
-		out.print("<tr><td>Hamster</td><td>10</td></tr>"); 
-		out.print("<tr><td>Conejo</td><td>15</td></tr>"); 
-		out.print("<tr><td>Pez</td><td>10</td></tr>"); 
-
+		
+        for (Map.Entry<String, Integer> entry : diccionarioDeMascotas.entrySet()) {
+        	
+            String nombreMascota = entry.getKey();
+            int contadorActual = entry.getValue();
+            
+            if (mascotasSeleccionadas != null) {
+     
+	            if (Arrays.asList(mascotasSeleccionadas).contains(nombreMascota)) {
+	                diccionarioDeMascotas.put(nombreMascota, contadorActual + 1);
+	            }
+            
+            }
+            
+            
+            out.print("<tr><th>La mascota : " + nombreMascota + "</th><th>tiene :  "+ diccionarioDeMascotas.get(nombreMascota)+ " votos</th></tr>");
+        }
+        
 
 		out.print("</table>");
 		out.println("</body>");
 		out.println("</html>");
 		out.close();
+		
+		
+
 		
 		
 		
