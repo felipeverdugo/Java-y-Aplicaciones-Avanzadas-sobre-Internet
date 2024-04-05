@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>Practica2</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+    <servlet>
+        <servlet-name>LoginUsr</servlet-name>
+        <servlet-class>LoginUsr</servlet-class>
+        <!-- Parámetros de inicialización -->
+        <!-- Parámetros de inicialización para nombres de usuario y contraseñas -->
+        <init-param>
+            <param-name>usuario1</param-name>
+            <param-value>1234</param-value>
+        </init-param>
+        <init-param>
+            <param-name>usuario2</param-name>
+            <param-value>contrasena2</param-value>
+        </init-param>
+        <init-param>
+            <param-name>usuario3</param-name>
+            <param-value>contrasena3</param-value>
+        </init-param>
+    </servlet>
+
+</web-app>
