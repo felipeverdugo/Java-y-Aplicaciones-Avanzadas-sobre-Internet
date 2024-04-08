@@ -2,6 +2,7 @@ package misservlets.practica2;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -60,6 +61,10 @@ public class Productos extends HttpServlet {
 		
 		int cantidadTotal = Integer.parseInt(getInitParameter("cantidadTotal"));
 		HttpSession sesion = request.getSession(true);
+		
+
+
+    
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -85,12 +90,14 @@ public class Productos extends HttpServlet {
         out.println("            </thead>");
         out.println("            <tbody>");
         Integer cant =0;
+        Double precioUnidad;
         for (int i = 1; i <= cantidadTotal; i++) {
             out.println("                <tr>");
             sesion.setAttribute("golo"+i , getInitParameter("golo"+i));
             out.println("                    <td>"+getInitParameter("golo"+i)+"</td>");
-            sesion.setAttribute("pu"+i ,getInitParameter("pu"+i));
-            out.println("                    <td>$"+getInitParameter("pu"+i)+"</td>");
+            precioUnidad = Double.parseDouble(getInitParameter("pu"+i));
+            sesion.setAttribute("pu"+i ,precioUnidad);
+            out.println("                    <td>$"+precioUnidad+"</td>");
             sesion.setAttribute("cant"+i ,cant);
             out.println("                    <td><input type=\"number\"  value=0 name=\"cantidad\" min=\"0\"></td>");
             out.println("                </tr>");
@@ -107,8 +114,16 @@ public class Productos extends HttpServlet {
         out.print("<a href=\"TerminarSesion\">Salir</a>");
         out.println("</body>");
         out.println("</html>");
-		
-		
+        
+        
+        System.out.println("ID de la sesión: " + sesion.getId());
+        // Obtener los nombres de los atributos en la sesión y sus valores
+        Enumeration<String> attributeNames = sesion.getAttributeNames();
+        while (attributeNames.hasMoreElements()) {
+            String attributeName = attributeNames.nextElement();
+            Object attributeValue = sesion.getAttribute(attributeName);
+            System.out.println("Nombre: " + attributeName + ", Valor : " + attributeValue+ "Tipo Atribu"+attributeValue.getClass());
+        }
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
