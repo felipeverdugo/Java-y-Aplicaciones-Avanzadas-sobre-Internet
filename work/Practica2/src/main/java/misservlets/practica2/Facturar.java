@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 /**
  * Servlet implementation class Facturar
  */
-@WebServlet("/Facturar")
+@WebServlet("/facturar")
 public class Facturar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -93,10 +93,10 @@ public class Facturar extends HttpServlet {
 		
 		
         out.println("            </tbody>");
-        out.println("<form action=\"Productos\" method=\"get\">");
+        out.println("<form action=\"productos\" method=\"get\">");
         out.println("    <button type=\"submit\" class=\"boton\">Seguir comprando</button>");
         out.println("</form>");
-        out.println("<form action=\"TerminarSesion\" method=\"get\">");
+        out.println("<form action=\"terminarsesion\" method=\"get\">");
         out.println("    <button type=\"submit\" class=\"boton\">Salir</button>");
         out.println("</form>");
 		out.println("</table>");

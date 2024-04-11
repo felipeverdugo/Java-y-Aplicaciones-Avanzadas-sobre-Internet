@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
 /**
  * Servlet implementation class LoginUsr
  */
-@WebServlet("/LoginUsr")
+@WebServlet("/loginUsr")
 public class LoginUsr extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Hashtable<String, String> logins;
@@ -63,7 +63,7 @@ public class LoginUsr extends HttpServlet {
             
             if (credencialesValidas) {
             	HttpSession sesion = request.getSession(true);
-            	response.sendRedirect(request.getContextPath()+"/Productos");
+            	response.sendRedirect(request.getContextPath()+"/productos");
             	
 
             } else {

@@ -19,7 +19,7 @@ import jakarta.websocket.Session;
  * Servlet implementation class Productos
  */
 @WebServlet(
-		urlPatterns = { "/Productos" }, 
+		urlPatterns = { "/productos" }, 
 		initParams = { 
 				@WebInitParam(name = "cantidadTotal", value = "5"), 
 				@WebInitParam(name = "golo0", value = "chupetin"), 
@@ -80,7 +80,7 @@ public class Productos extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("    <h2>Formulario de Pedido de Golosinas</h2>");
-        out.println("<form action=\"Facturar\" method=\"POST\">");
+        out.println("<form action=\"facturar\" method=\"POST\">");
         out.println("        <table>");
         out.println("            <thead>");
         out.println("                <tr>");
@@ -117,7 +117,7 @@ public class Productos extends HttpServlet {
         out.println("        <input type=\"submit\" value=\"Enviar Pedido\">");
         out.println("    </form>");
 
-        out.println("<form action=\"TerminarSesion\" method=\"get\">");
+        out.println("<form action=\"terminarsesion\" method=\"get\">");
         out.println("    <button type=\"submit\" class=\"boton\">Salir</button>");
         out.println("</form>");
 

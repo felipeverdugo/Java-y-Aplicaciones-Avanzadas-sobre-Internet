@@ -1,4 +1,4 @@
-package misservlets.practica2;
+package misservlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,20 +8,18 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 
 /**
- * Servlet implementation class TerminarSesion
+ * Servlet implementation class holaservlet
  */
-@WebServlet(urlPatterns = { "/terminarsesion" })
-public class TerminarSesion extends HttpServlet {
+@WebServlet("/holaservlet")
+public class holaservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public TerminarSesion() {
+    public holaservlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -30,17 +28,23 @@ public class TerminarSesion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out=response.getWriter();
-		response.setContentType("text/html"); 
-
-		 HttpSession ses = request.getSession(false);
-		 if (ses!=null){
-		 ses.invalidate();
-
-		 }
-
-         response.sendRedirect(request.getContextPath()+"/login.html");
-
+		
+		String nombre = request.getParameter("nombre");
+		
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        
+        // Imprimir el formulario HTML utilizando out.print()
+        out.println("<!DOCTYPE html>");
+        out.println("<html lang=\"en\">");
+        out.println("<head>");
+        out.println("    <meta charset=\"UTF-8\">");
+        out.println("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
+        out.println("    <title>Servlet hola</title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("    <h2>Bienvenido "+nombre+" </h2>");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
