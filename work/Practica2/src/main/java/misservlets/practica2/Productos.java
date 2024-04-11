@@ -59,8 +59,7 @@ public class Productos extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession sesion = request.getSession(false);
-
-		if (sesion == null){
+		if (sesion == null ){
         	response.sendRedirect(request.getContextPath()+"/login.html");
 		} else {
 		int cantidadTotal = Integer.parseInt(getInitParameter("cantidadTotal"));

@@ -44,7 +44,7 @@ public class holaservlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("    <h2>Bienvenido "+nombre+" </h2>");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
