@@ -12,3 +12,6 @@ Dudas: como hago para evitar entrar diractamente en una url
 
          como hago para evitar entrar diractamente en una url ( osea hay algo mejor que usar algun parametro y decir que es null , usar execpcione ?)
          acrosContext?
+
+         bserve el archivo web.xml, ¿qué modificación o nuevo tag encuentra, luego de
+haber agregado el servlet listener? esto de parametros de iniciacion en verde?

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 
 import jakarta.servlet.ServletException;
@@ -36,7 +37,7 @@ public class Facturar extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		HttpSession sesion = request.getSession(false);
-
+		 Hashtable<String, Double> stockProductos = (Hashtable<String, Double>) (request.getServletContext().getAttribute("stock"));
 		if (sesion == null){
         	response.sendRedirect(request.getContextPath()+"/login.html");
 		} else {
@@ -48,21 +49,6 @@ public class Facturar extends HttpServlet {
 		cantidadPorGolosina = request.getParameterValues("cantidad");
 		
 
-		
-		
-
-		
-		
-		for (int i = 0; i < cantidadPorGolosina.length; i++) {
-			System.out.println(request.getParameter("nombre"+i));
-			System.out.println(request.getParameter("precioUnidad"+i));
-			System.out.println(cantidadPorGolosina[i]);
-
-//			sesion.setAttribute("cant" + (i + 1), Integer.parseInt(cantidadPorGolosina[i]));
-		}
-
-
-    
 
 		Integer cant;
 		Double precioUnitario;
@@ -76,11 +62,10 @@ public class Facturar extends HttpServlet {
         out.println("            <tbody>");
 		for (int i = 0; i < cantidadPorGolosina.length; i++) {
 			cant = Integer.parseInt(cantidadPorGolosina[i]);
-			System.out.println(i);
 //            Si compro algun producto
 			if (cant != 0) {
 				nombre = request.getParameter("nombre"+i);
-				precioUnitario =Double.parseDouble(request.getParameter("precioUnidad"+i));
+				precioUnitario =stockProductos.get(nombre);
 				sesion.setAttribute("item"+i, new Golosina(nombre, precioUnitario, cant));
 				
 				out.println("<td>" + nombre + "</td>");

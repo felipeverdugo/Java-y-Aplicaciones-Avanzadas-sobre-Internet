@@ -3,6 +3,9 @@ package misservlets.practica2;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -19,20 +22,7 @@ import jakarta.websocket.Session;
  * Servlet implementation class Productos
  */
 @WebServlet(
-		urlPatterns = { "/productos" }, 
-		initParams = { 
-				@WebInitParam(name = "cantidadTotal", value = "5"), 
-				@WebInitParam(name = "golo0", value = "chupetin"), 
-				@WebInitParam(name = "pu0", value = "2"), 
-				@WebInitParam(name = "golo1", value = "chocolate"), 
-				@WebInitParam(name = "pu1", value = "3"), 
-				@WebInitParam(name = "golo2", value = "caramelo"), 
-				@WebInitParam(name = "pu2", value = "6"), 
-				@WebInitParam(name = "golo3", value = "alfajor"), 
-				@WebInitParam(name = "pu3", value = "40"), 
-				@WebInitParam(name = "golo4", value = "chicle"), 
-				@WebInitParam(name = "pu4", value = "8")
-		})
+		urlPatterns = { "/productos" })
 public class Productos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -62,7 +52,8 @@ public class Productos extends HttpServlet {
 		if (sesion == null ){
         	response.sendRedirect(request.getContextPath()+"/login.html");
 		} else {
-		int cantidadTotal = Integer.parseInt(getInitParameter("cantidadTotal"));
+
+		 Hashtable<String, Double> stockProductos = (Hashtable<String, Double>) (request.getServletContext().getAttribute("stock"));
 
 
 
@@ -93,10 +84,12 @@ public class Productos extends HttpServlet {
         Integer cant;
         String nombre;
         Double precioUnidad;
-        for (int i = 0; i < cantidadTotal; i++) {
+        Iterator<Map.Entry<String, Double>> iterator = stockProductos.entrySet().iterator();
+        for (int i = 0; i < stockProductos.size(); i++) {
+        	Map.Entry<String, Double> entry = iterator.next();
+            nombre = entry.getKey();
+            precioUnidad = entry.getValue();
         	cant = 0;
-            nombre = (getInitParameter("golo"+i));
-            precioUnidad = Double.parseDouble(getInitParameter("pu"+i));
             golo =(Golosina) sesion.getAttribute("item"+i);
             if (golo != null) {
             	cant = golo.getCant();

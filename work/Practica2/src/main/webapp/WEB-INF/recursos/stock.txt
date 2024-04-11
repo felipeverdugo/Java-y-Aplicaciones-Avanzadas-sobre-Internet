@@ -1,0 +1,10 @@
+Chicle,0.50
+Chocolate,1.20
+Caramelo,0.75
+Galleta,0.90
+Pastelito,1.50
+Pirulín,0.80
+Malvavisco,0.60
+Cereal,1.10
+Gomitas,0.95
+Gelatina,1.25

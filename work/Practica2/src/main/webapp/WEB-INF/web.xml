@@ -13,6 +13,11 @@
         <param-name>crossContext</param-name>
         <param-value>true</param-value>
     </context-param>
+    <context-param>
+<param-name>stock</param-name>
+<param-value>/WEB-INF/recursos/stock.txt</param-value>
+</context-param>
+    
     <servlet>
         <servlet-name>LoginUsr</servlet-name>
         <servlet-class>LoginUsr</servlet-class>
