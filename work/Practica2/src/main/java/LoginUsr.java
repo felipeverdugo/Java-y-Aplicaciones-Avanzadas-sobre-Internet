@@ -53,34 +53,31 @@ public class LoginUsr extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		
-		
 
 		
-        // Verificar si el usuario y la contraseña son válidos (aquí deberías agregar tu lógica de autenticación)
-        boolean credencialesValidas = validarCredenciales(username, password);
+        try {
+    		String username = request.getParameter("username");
+    		String password = request.getParameter("password");
+    		  // Verificar si el usuario y la contraseña son válidos (aquí deberías agregar tu lógica de autenticación)
+            boolean credencialesValidas = validarCredenciales(username, password);
+            
+            if (credencialesValidas) {
+            	HttpSession sesion = request.getSession(true);
+            	response.sendRedirect(request.getContextPath()+"/Productos");
+            	
+
+            } else {
+                // Si las credenciales son inválidas, redirigir al usuario nuevamente a la página de login
+                response.sendRedirect(request.getContextPath()+"/login.html");
+            }
         
-        if (credencialesValidas) {
-        	HttpSession sesion = request.getSession(true);
-        	response.sendRedirect(request.getContextPath()+"/Productos");
-        	
-
-        } else {
-            // Si las credenciales son inválidas, redirigir al usuario nuevamente a la página de login
+        } catch (Exception e) {
             response.sendRedirect(request.getContextPath()+"/login.html");
         }
-    
-
 		
 
 
 
-			
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	

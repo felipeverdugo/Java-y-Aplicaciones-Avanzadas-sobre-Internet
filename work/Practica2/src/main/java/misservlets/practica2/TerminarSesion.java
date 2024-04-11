@@ -32,18 +32,15 @@ public class TerminarSesion extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out=response.getWriter();
 		response.setContentType("text/html"); 
-		 out.print("<HTML>");
-		 out.print("<HEAD><BODY>");
+
 		 HttpSession ses = request.getSession(false);
 		 if (ses!=null){
-		 out.print("<H1>Gracias por su compra!!</H1>");
 		 ses.invalidate();
+
 		 }
-		 out.print("</HEAD></BODY>"); 
-		 out.print("<HTML>");
-		 out.close();
-		 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+         response.sendRedirect(request.getContextPath()+"/login.html");
+
 	}
 
 	/**

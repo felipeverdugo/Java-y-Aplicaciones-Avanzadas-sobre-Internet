@@ -22,16 +22,16 @@ import jakarta.websocket.Session;
 		urlPatterns = { "/Productos" }, 
 		initParams = { 
 				@WebInitParam(name = "cantidadTotal", value = "5"), 
-				@WebInitParam(name = "golo1", value = "chupetin"), 
-				@WebInitParam(name = "pu1", value = "2"), 
-				@WebInitParam(name = "golo2", value = "chocolate"), 
-				@WebInitParam(name = "pu2", value = "3"), 
-				@WebInitParam(name = "golo3", value = "caramelo"), 
-				@WebInitParam(name = "pu3", value = "6"), 
-				@WebInitParam(name = "golo4", value = "alfajor"), 
-				@WebInitParam(name = "pu4", value = "40"), 
-				@WebInitParam(name = "golo5", value = "chicle"), 
-				@WebInitParam(name = "pu5", value = "8")
+				@WebInitParam(name = "golo0", value = "chupetin"), 
+				@WebInitParam(name = "pu0", value = "2"), 
+				@WebInitParam(name = "golo1", value = "chocolate"), 
+				@WebInitParam(name = "pu1", value = "3"), 
+				@WebInitParam(name = "golo2", value = "caramelo"), 
+				@WebInitParam(name = "pu2", value = "6"), 
+				@WebInitParam(name = "golo3", value = "alfajor"), 
+				@WebInitParam(name = "pu3", value = "40"), 
+				@WebInitParam(name = "golo4", value = "chicle"), 
+				@WebInitParam(name = "pu4", value = "8")
 		})
 public class Productos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -58,13 +58,14 @@ public class Productos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		HttpSession sesion = request.getSession(false);
+
+		if (sesion == null){
+        	response.sendRedirect(request.getContextPath()+"/login.html");
+		} else {
 		int cantidadTotal = Integer.parseInt(getInitParameter("cantidadTotal"));
-		HttpSession sesion = request.getSession(true);
-		
 
 
-    
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -89,31 +90,40 @@ public class Productos extends HttpServlet {
         out.println("                </tr>");
         out.println("            </thead>");
         out.println("            <tbody>");
-        Integer cant =0;
+        Golosina golo;
+        Integer cant;
+        String nombre;
         Double precioUnidad;
-        for (int i = 1; i <= cantidadTotal; i++) {
-            out.println("                <tr>");
-            sesion.setAttribute("golo"+i , getInitParameter("golo"+i));
-            out.println("                    <td>"+getInitParameter("golo"+i)+"</td>");
+        for (int i = 0; i < cantidadTotal; i++) {
+        	cant = 0;
+            nombre = (getInitParameter("golo"+i));
             precioUnidad = Double.parseDouble(getInitParameter("pu"+i));
-            sesion.setAttribute("pu"+i ,precioUnidad);
-            out.println("                    <td>$"+precioUnidad+"</td>");
-            sesion.setAttribute("cant"+i ,cant);
-            out.println("                    <td><input type=\"number\"  value=0 name=\"cantidad\" min=\"0\"></td>");
+            golo =(Golosina) sesion.getAttribute("item"+i);
+            if (golo != null) {
+            	cant = golo.getCant();
+            }
+            out.println("                <tr>");
+            out.println("                    <td><output\">" + nombre+ "</output></td>");
+            out.println("                    <td><output>$" + precioUnidad + "</output></td>");
+            out.println(" <input type=\"hidden\" name=\"nombre" + i + "\" value=\"" + nombre+ "\"></td>");
+            out.println(" <input type=\"hidden\" name=\"precioUnidad" + i + "\" value=\"" + precioUnidad+ "\"></td>");
+            
+            out.println("                    <td><input type=\"number\"  value=\""+cant+"\" name=\"cantidad\" min=\"0\"></td>");
             out.println("                </tr>");
-
-			
-		}
-
-        
+        }
         out.println("            </tbody>");
         out.println("        </table>");
         out.println("        <br>");
         out.println("        <input type=\"submit\" value=\"Enviar Pedido\">");
         out.println("    </form>");
-        out.print("<a href=\"TerminarSesion\">Salir</a>");
+
+        out.println("<form action=\"TerminarSesion\" method=\"get\">");
+        out.println("    <button type=\"submit\" class=\"boton\">Salir</button>");
+        out.println("</form>");
+
         out.println("</body>");
         out.println("</html>");
+
         
         
         System.out.println("ID de la sesión: " + sesion.getId());
@@ -126,6 +136,7 @@ public class Productos extends HttpServlet {
         }
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
 	}
 
 	/**
